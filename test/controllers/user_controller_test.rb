@@ -51,9 +51,22 @@ class UserControllerTest < ActionController::TestCase
     end
   end
 
-  test "should get login" do
-    get :login
+  test "should success login" do
+    post :login, {"username" => "user1",
+                  "password" => "user!password"},
+                  format: "json"
     assert_response :success
+    body = JSON.parse(response.body)
+    assert_equal "user1", body["user_name"]
+    assert_equal 2, body["login_count"]
   end
 
+  test "should failed login" do
+    post :login, {"username" => "user1",
+                  "password" => "user1password"},
+                  format: "json"
+    assert_response :success
+    body = JSON.parse(response.body)
+    assert_equal -4, body["error_code"]
+  end
 end

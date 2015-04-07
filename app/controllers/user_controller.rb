@@ -13,5 +13,16 @@ class UserController < ApplicationController
   end
 
   def login
+    user = User.find_by(username: params[:username],
+                        password: params[:password])
+    if user.nil?
+      return render json: {"error_code": -4}
+    end
+
+    user.login_count += 1
+    user.save
+
+    return render json: {"user_name" => user.username,
+                         "login_count" => user.login_count}
   end
 end
