@@ -19,8 +19,7 @@ class UserController < ApplicationController
       return render json: {"error_code": -4}
     end
 
-    user.login_count += 1
-    user.save
+    user.increment! :login_count
 
     return render json: {"user_name" => user.username,
                          "login_count" => user.login_count}
