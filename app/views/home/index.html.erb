@@ -1,4 +1,10 @@
-<div class="container" id="loginContainer" ng-controller="loginController">
+<div id="alertContainer" ng-show="alert">
+  <div class="alert alert-warning fade in" role="alert">
+    <button type="button" class="close" aria-label="Close" ng-click="closeAlert()">&times;</button>
+    {{ alert }}
+  </div>
+</div>
+<div class="container" id="loginContainer">
   <form action="#" method="post" class="form-horizontal" ng-show="!logined">
     <div class="form-group">
       <label class="col-sm-2 control-label" for="username">Username</label>
