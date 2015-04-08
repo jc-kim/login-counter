@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'home#index'
+
   post 'clearData' => 'database#clearData'
 
   post 'signup' => 'user#signup'
