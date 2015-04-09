@@ -28,8 +28,6 @@ class User < ActiveRecord::Base
   end
 
   def error_code
-    return errors[:username][0][:code] if errors[:username].length > 0
-    return errors[:password][0][:code] if errors[:password].length > 0
-    return nil
+    return (errors[:username].map { |x| x[:code] } + errors[:password].map { |x| x[:code]}).max
   end
 end
