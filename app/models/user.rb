@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
       errors.add(:password, {code: -2})
       return
     end
-    unless 5 <= password.length and password.length <= 20
+    unless 8 <= password.length and password.length <= 20
       errors.add(:password, {code: -2})
       return
     end
